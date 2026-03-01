@@ -1,16 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameUiManager : MonoBehaviour
 {
-    [SerializeField] private GameObject answersPanel;
-    [SerializeField] private float answersPanelMoveSpeed;
+    [SerializeField] private GameObject answersPanel, pauseButton;
+    [SerializeField] private float answersPanelMoveSpeed, pauseButtonMoveSpeed;
 
-    private RectTransform answersPanelTransform;
+    private RectTransform answersPanelTransform, pauseButtonTransform;
     private GameObject blockAnswersPanel;
+    private bool isDisableBlockPanelRoutineStarted;
 
     void Start()
     {
         answersPanelTransform = answersPanel.GetComponent<RectTransform>();
+        pauseButtonTransform = pauseButton.GetComponent<RectTransform>();
 
         /*
          * Block panel prevents unnecessary button presses 
@@ -22,28 +25,41 @@ public class GameUiManager : MonoBehaviour
         blockAnswersPanel = blockAnswersPanelTransform.gameObject;
     }
 
-
     /// <summary>
     /// Hides answers panel to down.
     /// </summary>
     /// <param name="direction">Move direction state. If true, positive else negative.</param>
     public void MoveAnswersPanel(bool direction)
     {
-        // set active block panel
-        blockAnswersPanel.SetActive(true);
-
         // move answers panel by direction state, if direction is true - move up, else, down
-        if (direction)
-            answersPanelTransform.anchoredPosition = Vector2.Lerp(
-                answersPanelTransform.anchoredPosition,
-                new Vector2(0f, 1924f),
-                answersPanelMoveSpeed * Time.deltaTime
-            );
-        else
-            answersPanelTransform.anchoredPosition = Vector2.Lerp(
-                answersPanelTransform.anchoredPosition,
-                new Vector2(0f, 1179f),
-                answersPanelMoveSpeed * Time.deltaTime
-            );
+        answersPanelTransform.anchoredPosition = Vector2.Lerp(
+            answersPanelTransform.anchoredPosition,
+            direction ? new Vector2(0f, 1924f) : new Vector2(0f, 1179f),
+            answersPanelMoveSpeed * Time.deltaTime
+        );
+    }
+
+    /// <summary>
+    /// Hides pause button to right.
+    /// </summary>
+    public void HidePauseButton()
+    {
+        pauseButtonTransform.anchoredPosition = Vector2.Lerp(
+            pauseButtonTransform.anchoredPosition,
+            new Vector2(260f, -208f),
+            pauseButtonMoveSpeed * Time.deltaTime
+        );
+    }
+
+    /// <summary>
+    /// Enables and then disables block panel after delay.
+    /// </summary>
+    /// <param name="delay">Delay.</param>
+    public IEnumerator DisableBlockPanelAfterDelay(float delay)
+    {
+        Debug.Log("started");
+        blockAnswersPanel.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        blockAnswersPanel.SetActive(false);
     }
 }

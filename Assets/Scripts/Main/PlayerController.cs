@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             Handheld.Vibrate(); // vibration
             audioPlayer.PlayAudio(fallSound); // play fall sound
-            dataServer.UpdateIsPlayerLostState();
+            dataServer.UpdatePlayerLostState();
         }
     }
 
@@ -119,5 +119,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(COLLISION_REACTION_DELAY); // delay
         spriteRenderer.sprite = normalState; // set normal state sprite
         gameObject.transform.localScale = new Vector2(initialPlayerXSize, initialPlayerYSize); // return player to initial size
+    }
+
+    /// <summary>
+    /// Freezes player.
+    /// </summary>
+    public void FreezePlayer()
+    {
+        GetComponent<Rigidbody2D>().enabled = false;
     }
 }

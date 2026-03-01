@@ -17,6 +17,7 @@ public class GameResult
 public class GameProgressReceiver : MonoBehaviour
 {
     [SerializeField] [Tooltip("Player data server.")] private PlayerDataServer dataServer;
+    [SerializeField] private PlayerController player;
     [SerializeField] private GameUiManager gameUiManager;
     [SerializeField] [Tooltip("Win, game over scene name.")] private string win_scene, game_over_scene;
 
@@ -37,27 +38,36 @@ public class GameProgressReceiver : MonoBehaviour
     /// </summary>
     private void CheckPlayerProgress()
     {
-        // launch win scene
-        if (dataServer.isEnded)
+        switch (dataServer.gameState)
         {
-            GameResult result = new GameResult
-            {
-                score = dataServer.playerScore,
-                time = dataServer.gameSessionTime
-            };
+            // launch win scene
+            case "ENDED":
+                player.FreezePlayer(); // stop player
 
-            string json = JsonUtility.ToJson(result);
-            PlayerPrefsManager.WriteToStringPref("GAME_RESULT", json); // save game result
+                gameUiManager.HidePauseButton();
+                gameUiManager.MoveAnswersPanel(false);
 
-            loader.FadeLoad(win_scene);
-            return;
-        }
+                GameResult result = new GameResult
+                {
+                    score = dataServer.playerScore,
+                    time = dataServer.gameSessionTime
+                };
 
-        // launch game over scene
-        if (dataServer.isPlayerLost)
-        {
-            loader.FadeLoadAfterCustomDelay(game_over_scene, 4f);
-            gameUiManager.MoveAnswersPanel(false);
+                string json = JsonUtility.ToJson(result);
+                PlayerPrefsManager.WriteToStringPref("GAME_RESULT", json); // save game result
+
+                loader.FadeLoadAfterCustomDelay(win_scene, 4f);
+                break;
+
+            // launch game over scene
+            case "PLAYER_LOST":
+                loader.FadeLoadAfterCustomDelay(game_over_scene, 4f);
+
+                gameUiManager.HidePauseButton();
+                gameUiManager.MoveAnswersPanel(false);
+                break;
+
+            default: break; // nothing
         }
     }
 }

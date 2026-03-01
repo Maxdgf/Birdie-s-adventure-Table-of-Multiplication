@@ -8,14 +8,13 @@ using UnityEngine;
 
 public class PlayerDataServer : MonoBehaviour
 {
-    [HideInInspector] public bool isEnded, isPlayerLost;
+    [HideInInspector] public string gameState;
     [HideInInspector] public int playerScore;
     [HideInInspector] public float gameSessionTime;
 
     void Start()
     {
-        isEnded = false;
-        isPlayerLost = false;
+        gameState = "PLAYING";
         gameSessionTime = Time.time;
     }
 
@@ -31,17 +30,17 @@ public class PlayerDataServer : MonoBehaviour
     /// <summary>
     /// Updates 'is game ended' state. Sets to true.
     /// </summary>
-    public void UpdateIsGameEndedState()
+    public void UpdateGameEndedState()
     {
         gameSessionTime += (Time.time - gameSessionTime) + gameSessionTime;
-        isEnded = true;
+        gameState = "ENDED";
     }
 
     /// <summary>
     /// Updates 'is player lost' state.
     /// </summary>
-    public void UpdateIsPlayerLostState()
+    public void UpdatePlayerLostState()
     {
-        isPlayerLost = true;
+        gameState = "PLAYER_LOST";
     }
 }

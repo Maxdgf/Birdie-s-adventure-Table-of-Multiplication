@@ -2,6 +2,22 @@
  * Description
  * ----------------------------------------------------------------------------
  * This script generates multiplication math examples an manages game scene ui.
+ * 
+ * + Additional
+ * + ----------------------------------------------------------------------
+ * + Math examples generator adapted to work
+ * + on a normal game level and in a boss fight, 
+ * + some actions are performed on normal levels, and some in a boss fight.
+ * 
+ * ! Notes
+ * ! -----------
+ * ! # `isBossFightEnabled` bool needed to switch generator 
+ * ! # state from normal mode to boss fight mode.
+ * ! 
+ * ! # In normal mode, examples are generated for a specific number 
+ * ! # from the multiplication table (1...10) and with a multiplier 
+ * ! # up to 10 (1...10), and in boss fight mode, 
+ * ! # examples are generated randomly.
  */
 
 using TMPro;
@@ -142,17 +158,18 @@ public class MathExamplesGenerator : MonoBehaviour
             {
                 playerFightController.PrepareToAttack();
                 bossFightDataServer.ManagePlayerAttackState(true);
+                GenerateMathExample(); // generate next example
+                SetTextToAnswerButtons(answerButtons); // set answers to buttons
             }
             else
             {
                 playerScore++;
                 dataServer.UpdateScore(playerScore);
                 playerController.AddYForceToPlayer(true);
+                StartCoroutine(SignalizeExampleCorrecthness(true, value));
             }
 
             audioPlayer.PlayAudio(correctAnswer);
-            if (!isBossFightEnabled) 
-                StartCoroutine(SignalizeExampleCorrecthness(true, value));
         }
         else
         {
@@ -160,13 +177,14 @@ public class MathExamplesGenerator : MonoBehaviour
             {
                 bossAI.PrepareToAttack();
                 bossFightDataServer.ManageBossAttackState(true);
-            }
+                GenerateMathExample(); // generate next example
+                SetTextToAnswerButtons(answerButtons); // set answers to buttons
+            } else
+                StartCoroutine(SignalizeExampleCorrecthness(false, value));
 
             audioPlayer.PlayAudio(wrongAnswer);
             Handheld.Vibrate();
 
-            if (!isBossFightEnabled) 
-                StartCoroutine(SignalizeExampleCorrecthness(false, value));
         }
     }
 
@@ -192,7 +210,7 @@ public class MathExamplesGenerator : MonoBehaviour
             }
             else
             {
-                dataServer.UpdateIsGameEndedState();
+                dataServer.UpdateGameEndedState();
                 return;
             }
         }
@@ -220,7 +238,7 @@ public class MathExamplesGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// Signals the correctness of answer to current example.
+    /// Signals the correctness of answer to current example and generates next example.
     /// </summary>
     /// <param name="isCorrect">Correct or not correct.</param>
     private IEnumerator SignalizeExampleCorrecthness(bool isCorrect, string answer)
@@ -242,7 +260,7 @@ public class MathExamplesGenerator : MonoBehaviour
 
         exampleAnwserCorrectionIcon.SetActive(false);
 
-        GenerateMathExample();
-        SetTextToAnswerButtons(answerButtons);
+        GenerateMathExample(); // generate next example
+        SetTextToAnswerButtons(answerButtons); // set answers to buttons
     }
 }

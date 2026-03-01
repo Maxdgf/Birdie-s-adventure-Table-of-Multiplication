@@ -24,6 +24,8 @@ public class LevelButtonClickLogic : MonoBehaviour
     [SerializeField] [Tooltip("Levels register object.")] private LevelsRegister allLevels;
     [SerializeField] [Tooltip("Field on which stars obtained at this level will be placed.")] private GameObject starsField;
     [SerializeField] [Tooltip("Level background type.")] private string backgroundType;
+    [SerializeField] private bool enableEducation;
+    [SerializeField] private string educationText;
 
     private SceneFadeLoader loader;
     private int index;

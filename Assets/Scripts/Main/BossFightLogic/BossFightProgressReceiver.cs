@@ -13,10 +13,17 @@ public class BossFightProgressReceiver : MonoBehaviour
 
     void Update()
     {
-        if (bossFightDataServer.bossHealth == 0)
-            loader.FadeLoadAfterCustomDelay("BossFightWin", 3f);
+        switch (bossFightDataServer.gameState)
+        {
+            case "PLAYER_WIN": // launch win scene
+                loader.FadeLoadAfterCustomDelay("BossFightWin", 3f);
+                break;
 
-        if (bossFightDataServer.playerHealth == 0)
-            loader.FadeLoadAfterCustomDelay("BossfightOver", 3f);
+            case "BOSS_WIN": // launch game over scene
+                loader.FadeLoadAfterCustomDelay("BossFightOver", 3f);
+                break;
+
+            default: break; // nothing
+        }
     }
 }

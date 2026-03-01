@@ -1,3 +1,9 @@
+/*
+ * Description
+ * ---------------------------------------------------
+ * This scrpt controls boss object in bossfight scene.
+ */
+
 using System.Collections;
 using UnityEngine;
 
@@ -15,6 +21,7 @@ public class BossAI : MonoBehaviour
     private Coroutine wingsRoutine;
     private AudioSource soundSorce;
     private float autoBossAttackTime;
+    private Vector2 playerPosition;
 
     void Start()
     {
@@ -25,6 +32,7 @@ public class BossAI : MonoBehaviour
         startPosition = gameObject.transform.position;
         wingsRoutine = StartCoroutine(MoveWings(0.5f));
         autoBossAttackTime = autoBossAttackInterval;
+        playerPosition = player.transform.position;
     }
 
     void Update()
@@ -32,15 +40,17 @@ public class BossAI : MonoBehaviour
         if (bossFightDataServer.bossHealth > 0)
         {
             /*
-             * ---------------------------------------------------------
-             * If the player is inactive for a certain amount of time, 
-             * the boss will automatically attack him, 
-             * also causing damage to the player.
-             * ---------------------------------------------------------
+             * -----------------------------------------------------------
+             * | If the player is inactive for a certain amount of time, | 
+             * | the boss will automatically attack him,                 |
+             * | also causing damage to the player.                      |
+             * -----------------------------------------------------------
              */
             if (autoBossAttackTime > 0)
             {
-                autoBossAttackTime -= Time.deltaTime; // decrease time
+                if (!bossFightDataServer.isBossAttackNow)
+                    autoBossAttackTime -= Time.deltaTime; // decrease time
+
                 if (bossFightDataServer.isPlayerAttackNow)
                     autoBossAttackTime = autoBossAttackInterval;
             }
@@ -63,7 +73,12 @@ public class BossAI : MonoBehaviour
                     MakeMoveToStartPosition(); // return to start position
                     gameUiManager.MoveAnswersPanel(true); // show answers panel
                 }
-        } else FallDown(); // fall down
+        }
+        else
+        {
+            bossFightDataServer.SetPlayerWin();
+            FallDown(); // fall down
+        }
     }
 
     /// <summary>
@@ -101,6 +116,7 @@ public class BossAI : MonoBehaviour
         soundSorce.Play(); // play boss attack sound effect
 
         StopCoroutine(wingsRoutine); // stop wings move coroutine
+        StartCoroutine(gameUiManager.DisableBlockPanelAfterDelay(2f)); // enable block panel on answers panel
         StartCoroutine(ReturnToStartPosition()); // start return boss to start position coroutine
 
         spriteRenderer.sprite = bossStates[0]; // set attack sprite to boss
@@ -112,7 +128,6 @@ public class BossAI : MonoBehaviour
     /// </summary>
     private void MakeMoveToPlayer()
     {
-        Vector2 playerPosition = player.transform.position;
         gameObject.transform.Translate(playerPosition * (Time.deltaTime * speed));
     }
 
@@ -125,10 +140,11 @@ public class BossAI : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves boss down when your health equals 0.
+    /// Moves boss down with rotation(fall effect).
     /// </summary>
     private void FallDown()
     {
-        gameObject.transform.Translate(Vector2.down * (Time.deltaTime * 5f));
+        gameObject.transform.Translate(Vector2.down * (Time.deltaTime * 5f), Space.World); // move boss down (in world space)
+        transform.Rotate(0, 0, 360f * Time.deltaTime); // rotate boss (in local space)
     }
 }

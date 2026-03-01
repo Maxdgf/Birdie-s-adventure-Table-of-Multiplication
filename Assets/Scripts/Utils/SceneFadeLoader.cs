@@ -2,6 +2,12 @@
  * Description
  * ------------------------------------------------------------
  * This script load scene by name with colored fade transition.
+ * 
+ * + Additional
+ * + ----------------------------------------------------------
+ * + This script based on `Simple Scene Fade Load System` asset
+ * + from Unity Assets store. 
+ * + -> https://assetstore.unity.com/packages/tools/particles-effects/simple-fade-scene-transition-system-81753
  */
 
 using System.Collections;

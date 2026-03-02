@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class StarsSetter : MonoBehaviour
 {
-    private const float TARGET_STAR_SIZE = 2f; // target star game object size
+    private const float TARGET_STAR_SIZE = 1.7f; // target star game object size
 
     [SerializeField] [Tooltip("Star object sprite.")] private Sprite star;
     [SerializeField] [Tooltip("3 stars particles effect.")] private ParticleSystem[] starParticles;

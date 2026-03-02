@@ -43,16 +43,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // player rotation when he falling or moving up.
-        if (rigidBody2D.linearVelocityY < 0)
-        {
-            Quaternion angle = Quaternion.Euler(0, 0, fallAngle); // target angle
-            transform.rotation = Quaternion.Slerp(transform.rotation, angle, Time.deltaTime * smoothRotationSpeed); // fall
-        }
-        else
-        {
-            Quaternion angle = Quaternion.Euler(0, 0, upAngle); // target angle
-            transform.rotation = Quaternion.Slerp(transform.rotation, angle, Time.deltaTime * smoothRotationSpeed); // move up
-        }
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            rigidBody2D.linearVelocityY < 0 ? Quaternion.Euler(0, 0, fallAngle) : Quaternion.Euler(0, 0, upAngle), // angle
+            Time.deltaTime * smoothRotationSpeed
+        ); // fall or up
     }
 
     // player collision detection
@@ -126,6 +121,27 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void FreezePlayer()
     {
-        GetComponent<Rigidbody2D>().enabled = false;
+        // reset speed
+        rigidBody2D.linearVelocity = Vector2.zero;
+        rigidBody2D.angularVelocity = 0;
+
+        rigidBody2D.bodyType = RigidbodyType2D.Kinematic; // set kinematic type
+        transform.rotation = Quaternion.identity; // set default rotation
+
+        StartCoroutine(WingsAnimation()); // start wings routine
+    }
+
+    /// <summary>
+    /// Makes wings animation.
+    /// </summary>
+    private IEnumerator WingsAnimation()
+    {
+        while (true)
+        {
+            spriteRenderer.sprite = actionState; // set action state sprite
+            yield return new WaitForSeconds(WINGS_MOVE_DELAY); // delay
+            spriteRenderer.sprite = normalState; // set normal state sprite
+            yield return new WaitForSeconds(WINGS_MOVE_DELAY); // delay
+        }
     }
 }

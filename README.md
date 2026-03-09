@@ -2,7 +2,6 @@
  A fun, educational mobile game about the multiplication table
 
 ## TODO📖
-* improve Ui 80%
 * Add cutscenes❌
 * Add education❌
 

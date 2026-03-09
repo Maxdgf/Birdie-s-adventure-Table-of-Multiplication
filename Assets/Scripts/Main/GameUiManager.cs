@@ -8,7 +8,6 @@ public class GameUiManager : MonoBehaviour
 
     private RectTransform answersPanelTransform, pauseButtonTransform;
     private GameObject blockAnswersPanel;
-    private bool isDisableBlockPanelRoutineStarted;
 
     void Start()
     {
@@ -57,7 +56,6 @@ public class GameUiManager : MonoBehaviour
     /// <param name="delay">Delay.</param>
     public IEnumerator DisableBlockPanelAfterDelay(float delay)
     {
-        Debug.Log("started");
         blockAnswersPanel.SetActive(true);
         yield return new WaitForSeconds(delay);
         blockAnswersPanel.SetActive(false);

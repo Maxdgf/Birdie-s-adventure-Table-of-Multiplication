@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d26a936c8390134391d4bf9131e44ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 10
+  playerHealth: 1
   bossHealth: 10
   gameState: 
   isBossAttackNow: 0
@@ -3936,6 +3936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c32800dad0da62408603ccca5e8b3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pausePanel: {fileID: 0}
 --- !u!114 &1540952266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5105,6 +5106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c32800dad0da62408603ccca5e8b3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pausePanel: {fileID: 0}
 --- !u!114 &1842615234
 MonoBehaviour:
   m_ObjectHideFlags: 0

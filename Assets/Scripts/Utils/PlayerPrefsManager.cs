@@ -99,9 +99,9 @@ public static class PlayerPrefsManager
     /// </summary>
     /// <param name="prefName">Pref name.</param>
     /// <returns>Player pref string value("" if player pref is not founded).</returns>
-    public static string ExtractValueFromStringPref(string prefName)
+    public static string ExtractValueFromStringPref(string prefName, string default_value = "")
     {
-        return PlayerPrefs.GetString(prefName, ""); // "" dafault value
+        return PlayerPrefs.GetString(prefName, default_value); // "" dafault value
     }
 
     /// <summary>

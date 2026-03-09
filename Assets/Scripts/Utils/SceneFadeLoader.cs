@@ -12,6 +12,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneFadeLoader : MonoBehaviour
 {
@@ -66,6 +67,11 @@ public class SceneFadeLoader : MonoBehaviour
     public void FadeLoadAfterCustomDelay(string sceneName, float delay)
     {
         StartCoroutine(LoadSceneAfterDelay(sceneName, delay));
+    }
+
+    public void LoadWithoutFade(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     /// <summary>

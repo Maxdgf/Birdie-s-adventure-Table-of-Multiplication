@@ -2678,30 +2678,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1106397937}
-        m_TargetAssemblyTypeName: SceneFadeLoader, Assembly-CSharp
-        m_MethodName: FadeLoadAfterLittleDelay
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ProgressMap
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1106397938}
-        m_TargetAssemblyTypeName: OnClickButtonSound, Assembly-CSharp
-        m_MethodName: PlayOnClickSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1106397939}
         m_TargetAssemblyTypeName: ResetPause, Assembly-CSharp
         m_MethodName: ResetGamePause
@@ -2712,6 +2688,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1106397937}
+        m_TargetAssemblyTypeName: SceneFadeLoader, Assembly-CSharp
+        m_MethodName: LoadWithoutFade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ProgressMap
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1106397935
@@ -2790,6 +2778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c32800dad0da62408603ccca5e8b3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pausePanel: {fileID: 0}
 --- !u!1 &1107786463
 GameObject:
   m_ObjectHideFlags: 0
@@ -4900,6 +4889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c32800dad0da62408603ccca5e8b3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pausePanel: {fileID: 2037066837}
 --- !u!1 &2002577255
 GameObject:
   m_ObjectHideFlags: 0

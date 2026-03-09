@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossFightWin.unity
     guid: 755bab0f15b0c184295bfbe43f71e455
+  - enabled: 1
+    path: Assets/Scenes/StartCutScene.unity
+    guid: c5e37b5003437ab4fa72b8f3209ab4c6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0

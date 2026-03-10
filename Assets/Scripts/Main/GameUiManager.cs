@@ -25,6 +25,15 @@ public class GameUiManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Hides all ui objects.
+    /// </summary>
+    public void HideAllImmediately()
+    {
+        answersPanel.SetActive(false);
+        pauseButton.SetActive(false);
+    }
+
+    /// <summary>
     /// Hides answers panel to down.
     /// </summary>
     /// <param name="direction">Move direction state. If true, positive else negative.</param>

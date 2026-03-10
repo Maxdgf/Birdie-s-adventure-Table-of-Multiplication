@@ -42,7 +42,7 @@ public class GameProgressParser : MonoBehaviour
         int minutes = (int)total / 60; // minutes in total
         int seconds = (int)total % 60; // seconds in total
 
-        return string.Format("{0:00}.{1:00}", minutes, seconds); // format string
+        return string.Format("{0:00} : {1:00}", minutes, seconds); // format string
     }
 
     private void ManageGameResultData()

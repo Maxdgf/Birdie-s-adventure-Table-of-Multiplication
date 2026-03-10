@@ -40,6 +40,7 @@ public class playerFightController : MonoBehaviour
         else
         {
             bossFightDataServer.SetBossWin();
+            gameUiManager.HideAllImmediately();
             FallDown();
         }
     }

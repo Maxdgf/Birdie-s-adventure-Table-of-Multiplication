@@ -31,7 +31,7 @@ public static class PlayerPrefsManager
     /// </summary>
     public static void UnlockBossfight()
     {
-        PlayerPrefs.SetString("IS_BOSSFIGHT_UNLOCKED", "false");
+        PlayerPrefs.SetString("IS_BOSSFIGHT_UNLOCKED", "true");
     }
 
     /// <summary>

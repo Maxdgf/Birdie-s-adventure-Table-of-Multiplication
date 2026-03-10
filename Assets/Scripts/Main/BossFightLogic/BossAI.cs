@@ -13,7 +13,7 @@ public class BossAI : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private BossFightDataServer bossFightDataServer;
     [SerializeField] private GameUiManager gameUiManager;
-    [SerializeField] private float speed, answersPanelMoveSpeed;
+    [SerializeField] private float speed;
     [SerializeField] private float autoBossAttackInterval;
 
     private SpriteRenderer spriteRenderer;
@@ -25,13 +25,14 @@ public class BossAI : MonoBehaviour
 
     void Start()
     {
+        autoBossAttackTime = autoBossAttackInterval;
+
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         Transform sound = transform.Find("Sound Source");
         soundSorce = sound.gameObject.GetComponent<AudioSource>();
 
         startPosition = gameObject.transform.position;
         wingsRoutine = StartCoroutine(MoveWings(0.5f));
-        autoBossAttackTime = autoBossAttackInterval;
         playerPosition = player.transform.position;
     }
 
@@ -48,11 +49,11 @@ public class BossAI : MonoBehaviour
              */
             if (autoBossAttackTime > 0)
             {
-                if (!bossFightDataServer.isBossAttackNow)
-                    autoBossAttackTime -= Time.deltaTime; // decrease time
-
                 if (bossFightDataServer.isPlayerAttackNow)
                     autoBossAttackTime = autoBossAttackInterval;
+                else
+                    if (!bossFightDataServer.isBossAttackNow)
+                        autoBossAttackTime -= Time.deltaTime; // decrease time
             }
             else
             {
@@ -77,6 +78,7 @@ public class BossAI : MonoBehaviour
         else
         {
             bossFightDataServer.SetPlayerWin();
+            gameUiManager.HideAllImmediately();
             FallDown(); // fall down
         }
     }

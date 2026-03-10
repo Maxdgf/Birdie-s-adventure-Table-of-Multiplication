@@ -3,7 +3,7 @@ using UnityEngine;
 public class BossFightDataServer : MonoBehaviour
 {
     public int playerHealth, bossHealth;
-    [HideInInspector] public string gameState;
+    [HideInInspector] public string gameState, attackState;
     [HideInInspector] public bool isBossAttackNow, isPlayerAttackNow;
     public float autoBossAttackTimer;
 

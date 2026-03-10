@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Game Localization Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Game Localization
+  m_TableCollectionNameGuidString: f82fd05c6f253f1478d3e21670688f58
+  m_Entries:
+  - m_Id: 63360253952
+    m_Key: Start panel text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 582061441024
+    m_Key: Win text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2013770334208
+    m_Key: Game over text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15499611127808
+    m_Key: Start cut scene description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63141875597312
+    m_Key: Bossfight description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103550882463744
+    m_Key: Pause text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103710035329024
+    m_Key: Continue text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103827383566336
+    m_Key: Exit text
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2353975470576107819
+  references:
+    version: 2
+    RefIds:
+    - rid: 2353975470576107819
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1773155471854

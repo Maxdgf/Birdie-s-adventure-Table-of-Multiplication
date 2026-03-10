@@ -33,5 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartCutScene.unity
     guid: c5e37b5003437ab4fa72b8f3209ab4c6
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 6a0a0bb47d793c14c9dae888648cc030, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: de612b02127c28c428b298033ef21c93, type: 2}
   m_UseUCBPForAssetBundles: 0

@@ -24,6 +24,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MathExamplesGenerator : MonoBehaviour
 {
@@ -112,6 +113,7 @@ public class MathExamplesGenerator : MonoBehaviour
         int counter = 0;
         float animationDelay = 0f;
         int randomAnswerPosition = Random.Range(0, buttons.Length);
+        List<int> answers = new List<int>();
 
         DisableButtons(); // disable buttons
 
@@ -128,9 +130,9 @@ public class MathExamplesGenerator : MonoBehaviour
                 Animator textAnimator = textView.GetComponent<Animator>();
                 StartCoroutine(animationManager.PlayAnimationAfterDelay(textAnimator, answerButtonsCaptionAnimation, animationDelay, false));
             }
-            
-            if (counter == randomAnswerPosition) textView.text = currentMathExampleResult.ToString();
-            else textView.text = Random.Range(1, MAX_ANSWER_NUM).ToString();
+
+            int numToSet = counter == randomAnswerPosition ? currentMathExampleResult : Random.Range(1, MAX_ANSWER_NUM);
+            textView.text = numToSet.ToString();
 
             counter++;
             button.enabled = true; // make button enabled after disabled

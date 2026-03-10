@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Game Localization_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: f82fd05c6f253f1478d3e21670688f58, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 63360253952
+    m_Localized: Tap to screen to start!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 582061441024
+    m_Localized: Win!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2013770334208
+    m_Localized: Game Over!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15499611127808
+    m_Localized: It looks like an evil eagle has kidnapped a birdy, you need to save
+      it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63141875597312
+    m_Localized: Well, the time has come. You've completed all the levels and now
+      you have one final push to save the bird! Mark the correct answers to the questions
+      to damage the boss, but be careful, the questions will vary, and if you don't
+      answer within 15 seconds, the boss will attack you. Good luck!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103550882463744
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103710035329024
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103827383566336
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

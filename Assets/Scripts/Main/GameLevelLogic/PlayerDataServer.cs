@@ -15,7 +15,11 @@ public class PlayerDataServer : MonoBehaviour
     void Start()
     {
         gameState = "PLAYING";
-        gameSessionTime = Time.time;
+    }
+
+    void Update()
+    {
+        gameSessionTime += Time.deltaTime;
     }
 
     /// <summary>
@@ -32,7 +36,6 @@ public class PlayerDataServer : MonoBehaviour
     /// </summary>
     public void UpdateGameEndedState()
     {
-        gameSessionTime += (Time.time - gameSessionTime) + gameSessionTime;
         gameState = "ENDED";
     }
 

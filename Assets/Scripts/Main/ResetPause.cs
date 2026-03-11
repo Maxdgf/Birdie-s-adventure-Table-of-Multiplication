@@ -12,4 +12,12 @@ public class ResetPause : MonoBehaviour
         TimeManager.PlayGameTime(); // play game time
         pausePanel.SetActive(false);
     }
+
+    /// <summary>
+    /// Plays game time.
+    /// </summary>
+    public void ResetGamePause()
+    {
+        TimeManager.PlayGameTime();
+    }
 }

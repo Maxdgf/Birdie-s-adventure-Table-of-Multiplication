@@ -6,9 +6,6 @@ A fun, educational mobile android game about the multiplication table
 <table>
     <tr>
         <td>
-            <img src="previews\game_gif.gif" width=1080>
-        </td>
-        <td>
             <img src="previews\screen3.jpg">
         </td>
         <td>
@@ -16,6 +13,11 @@ A fun, educational mobile android game about the multiplication table
         </td>
         <td>
             <img src="previews\screen1.jpg">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="previews\game_gif.gif">
         </td>
     </tr>
 </table>
